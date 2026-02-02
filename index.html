@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,228 +7,362 @@
     <style>
       :root {
         color-scheme: light;
+        --bg: #fafafa;
+        --card: #ffffff;
+        --text: #1a1a1a;
+        --muted: #666;
+        --border: #eaeaea;
+        --accent: #0f6fff;
       }
+      * { box-sizing: border-box; }
       body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
           "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans", Arial, sans-serif;
         line-height: 1.65;
-        color: #1a1a1a;
-        background: #fafafa;
+        color: var(--text);
+        background: var(--bg);
       }
-      main {
-        max-width: 860px;
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+      }
+      .header-inner {
+        max-width: 980px;
         margin: 0 auto;
-        padding: 40px 24px 64px;
-        background: #fff;
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
       }
-      h1 {
-        font-size: 28px;
-        margin: 0 0 8px;
+      .lang-toggle {
+        display: inline-flex;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        overflow: hidden;
       }
-      h2 {
-        font-size: 20px;
-        margin: 28px 0 8px;
-      }
-      h3 {
-        font-size: 16px;
-        margin: 16px 0 6px;
-      }
-      p {
-        margin: 8px 0;
-      }
-      ul {
-        margin: 8px 0 8px 20px;
-      }
-      .meta {
-        color: #555;
+      .lang-toggle button {
+        padding: 6px 12px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
         font-size: 14px;
       }
-      .divider {
-        margin: 24px 0;
-        border: none;
-        border-top: 1px solid #eee;
+      .lang-toggle button.active {
+        background: var(--accent);
+        color: #fff;
       }
-      .lang-label {
-        font-size: 12px;
-        letter-spacing: 0.08em;
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 24px 16px 64px;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+      }
+      nav {
+        position: sticky;
+        top: 60px;
+        align-self: start;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      nav h3 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: var(--muted);
         text-transform: uppercase;
-        color: #888;
-        margin-top: 24px;
+        letter-spacing: 0.08em;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      nav li { margin: 6px 0; }
+      nav a {
+        color: #1a1a1a;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      nav a:hover { color: var(--accent); }
+
+      .content {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+      }
+
+      h1 { font-size: 28px; margin: 0 0 8px; }
+      h2 { font-size: 20px; margin: 28px 0 8px; }
+      h3 { font-size: 16px; margin: 16px 0 6px; }
+      p { margin: 8px 0; }
+      ul { margin: 8px 0 8px 20px; }
+      .meta { color: var(--muted); font-size: 14px; }
+      .divider { margin: 24px 0; border: none; border-top: 1px solid var(--border); }
+
+      /* Language switching */
+      [data-lang="en"] .lang-zh { display: none; }
+      [data-lang="zh"] .lang-en { display: none; }
+
+      @media (max-width: 900px) {
+        main { grid-template-columns: 1fr; }
+        nav { position: relative; top: 0; }
       }
     </style>
   </head>
   <body>
+    <header>
+      <div class="header-inner">
+        <strong>PromptBox Privacy Policy</strong>
+        <div class="lang-toggle" role="tablist" aria-label="Language switch">
+          <button id="btn-en" class="active" type="button">EN</button>
+          <button id="btn-zh" type="button">中文</button>
+        </div>
+      </div>
+    </header>
+
     <main>
-      <h1>PromptBox Privacy Policy</h1>
-      <p class="meta">
-        Effective Date: 2026/2/8<br />
-        Operator: golden bear studio<br />
-        Contact: xinzhao.uci@gmail.com
-      </p>
+      <!-- TOC EN -->
+      <nav class="lang-en">
+        <h3>Contents</h3>
+        <ul>
+          <li><a href="#en-1">1. Information We Collect</a></li>
+          <li><a href="#en-2">2. How We Use Information</a></li>
+          <li><a href="#en-3">3. Sharing & Third-Party Services</a></li>
+          <li><a href="#en-4">4. Data Storage & Retention</a></li>
+          <li><a href="#en-5">5. Security</a></li>
+          <li><a href="#en-6">6. Your Choices</a></li>
+          <li><a href="#en-7">7. Cross-Border Processing</a></li>
+          <li><a href="#en-8">8. Children’s Privacy</a></li>
+          <li><a href="#en-9">9. Updates to This Policy</a></li>
+          <li><a href="#en-10">10. Contact Us</a></li>
+        </ul>
+      </nav>
 
-      <h2>1. Information We Collect</h2>
-      <p>We may collect the following types of information:</p>
+      <!-- TOC ZH -->
+      <nav class="lang-zh">
+        <h3>目录</h3>
+        <ul>
+          <li><a href="#zh-1">1. 我们收集的信息</a></li>
+          <li><a href="#zh-2">2. 我们如何使用信息</a></li>
+          <li><a href="#zh-3">3. 信息共享与第三方服务</a></li>
+          <li><a href="#zh-4">4. 数据存储与保留</a></li>
+          <li><a href="#zh-5">5. 数据安全</a></li>
+          <li><a href="#zh-6">6. 你的选择</a></li>
+          <li><a href="#zh-7">7. 跨境处理</a></li>
+          <li><a href="#zh-8">8. 儿童隐私</a></li>
+          <li><a href="#zh-9">9. 政策更新</a></li>
+          <li><a href="#zh-10">10. 联系我们</a></li>
+        </ul>
+      </nav>
 
-      <h3>(1) Local Content &amp; Settings</h3>
-      <ul>
-        <li>Prompts, categories, tags, and settings you create are stored locally on your device.</li>
-        <li>We do not proactively upload or collect your stored content.</li>
-      </ul>
+      <div class="content">
+        <!-- English -->
+        <section class="lang-en">
+          <h1>PromptBox Privacy Policy</h1>
+          <p class="meta">
+            Effective Date: 2026/2/8<br />
+            Operator: golden bear studio<br />
+            Contact: xinzhao.uci@gmail.com
+          </p>
 
-      <h3>(2) Clipboard Data</h3>
-      <ul>
-        <li>When you open the “Capture” feature, the app reads clipboard text to preview and save it.</li>
-        <li>Clipboard content stays on device unless you choose to save, export, or share it.</li>
-      </ul>
+          <h2 id="en-1">1. Information We Collect</h2>
+          <p>We may collect the following types of information:</p>
 
-      <h3>(3) Usage Analytics &amp; Device/App Information (Optional)</h3>
-      <ul>
-        <li>If you enable “Settings → Privacy &amp; Data → Analytics,” we use Firebase Analytics to collect anonymous usage statistics (e.g., usage counts and feature frequency) and necessary device/app information (e.g., device model, OS version, app version).</li>
-        <li>This data is used to improve the product, and you can turn it off at any time.</li>
-      </ul>
+          <h3>(1) Local Content &amp; Settings</h3>
+          <ul>
+            <li>Prompts, categories, tags, and settings you create are stored locally on your device.</li>
+            <li>We do not proactively upload or collect your stored content.</li>
+          </ul>
 
-      <h3>(4) Network Request Logs</h3>
-      <ul>
-        <li>When you use the Explore feature to load recommended prompts, our server/content delivery service may receive standard request information (e.g., IP address, device/browser info, request time).</li>
-      </ul>
+          <h3>(2) Clipboard Data</h3>
+          <ul>
+            <li>When you open the “Capture” feature, the app reads clipboard text to preview and save it.</li>
+            <li>Clipboard content stays on device unless you choose to save, export, or share it.</li>
+          </ul>
 
-      <h3>(5) Sharing &amp; Feedback</h3>
-      <ul>
-        <li>If you export, share, or email feedback, the data is handled by the apps or services you choose (e.g., email client, share targets).</li>
-      </ul>
+          <h3>(3) Usage Analytics &amp; Device/App Information (Optional)</h3>
+          <ul>
+            <li>If you enable “Settings → Privacy &amp; Data → Analytics,” we use Firebase Analytics to collect anonymous usage statistics (e.g., usage counts and feature frequency) and necessary device/app information (e.g., device model, OS version, app version).</li>
+            <li>This data is used to improve the product, and you can turn it off at any time.</li>
+          </ul>
 
-      <h2>2. How We Use Information</h2>
-      <ul>
-        <li>Provide and improve core features (e.g., content management, Explore recommendations)</li>
-        <li>Understand feature usage and optimize experience (only when analytics is enabled)</li>
-        <li>Handle user feedback and support</li>
-      </ul>
+          <h3>(4) Network Request Logs</h3>
+          <ul>
+            <li>When you use the Explore feature to load recommended prompts, our server/content delivery service may receive standard request information (e.g., IP address, device/browser info, request time).</li>
+          </ul>
 
-      <h2>3. Sharing &amp; Third-Party Services</h2>
-      <p>We do not sell your personal information.</p>
-      <p>We may use the following third-party services:</p>
-      <ul>
-        <li><strong>Firebase Analytics (Google)</strong>: anonymous usage analytics (optional)</li>
-        <li><strong>Content hosting/CDN services</strong>: to serve Explore content</li>
-      </ul>
-      <p>These services process data according to their own privacy policies.</p>
+          <h3>(5) Sharing &amp; Feedback</h3>
+          <ul>
+            <li>If you export, share, or email feedback, the data is handled by the apps or services you choose (e.g., email client, share targets).</li>
+          </ul>
 
-      <h2>4. Data Storage &amp; Retention</h2>
-      <ul>
-        <li>Local content is stored on your device; you can delete content or uninstall the app to remove local data.</li>
-        <li>Analytics data is processed by third-party services and retained according to their default policies.</li>
-        <li>Server request logs may be retained for security and performance.</li>
-      </ul>
+          <h2 id="en-2">2. How We Use Information</h2>
+          <ul>
+            <li>Provide and improve core features (e.g., content management, Explore recommendations)</li>
+            <li>Understand feature usage and optimize experience (only when analytics is enabled)</li>
+            <li>Handle user feedback and support</li>
+          </ul>
 
-      <h2>5. Security</h2>
-      <p>We take reasonable technical and organizational measures to protect your information. Data in transit uses secure connections. Local data is protected by system mechanisms.</p>
+          <h2 id="en-3">3. Sharing &amp; Third-Party Services</h2>
+          <p>We do not sell your personal information.</p>
+          <p>We may use the following third-party services:</p>
+          <ul>
+            <li><strong>Firebase Analytics (Google)</strong>: anonymous usage analytics (optional)</li>
+            <li><strong>Content hosting/CDN services</strong>: to serve Explore content</li>
+          </ul>
+          <p>These services process data according to their own privacy policies.</p>
 
-      <h2>6. Your Choices</h2>
-      <ul>
-        <li>Turn off analytics in “Settings → Privacy &amp; Data”</li>
-        <li>Delete content you created in the app</li>
-        <li>Uninstall the app to remove local data</li>
-      </ul>
+          <h2 id="en-4">4. Data Storage &amp; Retention</h2>
+          <ul>
+            <li>Local content is stored on your device; you can delete content or uninstall the app to remove local data.</li>
+            <li>Analytics data is processed by third-party services and retained according to their default policies.</li>
+            <li>Server request logs may be retained for security and performance.</li>
+          </ul>
 
-      <h2>7. Cross-Border Processing</h2>
-      <p>Because we use services located in different countries or regions, your information (such as anonymous analytics or request logs) may be processed outside your country/region.</p>
+          <h2 id="en-5">5. Security</h2>
+          <p>We take reasonable technical and organizational measures to protect your information. Data in transit uses secure connections. Local data is protected by system mechanisms.</p>
 
-      <h2>8. Children’s Privacy</h2>
-      <p>This app is not intended for children under 13. If you believe we may have collected a child’s information, contact us to delete it.</p>
+          <h2 id="en-6">6. Your Choices</h2>
+          <ul>
+            <li>Turn off analytics in “Settings → Privacy &amp; Data”</li>
+            <li>Delete content you created in the app</li>
+            <li>Uninstall the app to remove local data</li>
+          </ul>
 
-      <h2>9. Updates to This Policy</h2>
-      <p>We may update this policy from time to time. The updated version will be posted here with a new effective date.</p>
+          <h2 id="en-7">7. Cross-Border Processing</h2>
+          <p>Because we use services located in different countries or regions, your information (such as anonymous analytics or request logs) may be processed outside your country/region.</p>
 
-      <h2>10. Contact Us</h2>
-      <p>Email: xinzhao.uci@gmail.com</p>
+          <h2 id="en-8">8. Children’s Privacy</h2>
+          <p>This app is not intended for children under 13. If you believe we may have collected a child’s information, contact us to delete it.</p>
 
-      <hr class="divider" />
+          <h2 id="en-9">9. Updates to This Policy</h2>
+          <p>We may update this policy from time to time. The updated version will be posted here with a new effective date.</p>
 
-      <div class="lang-label">中文</div>
-      <h1>PromptBox 隐私政策</h1>
-      <p class="meta">
-        生效日期：2026/2/8<br />
-        运营主体：golden bear studio<br />
-        联系邮箱：xinzhao.uci@gmail.com
-      </p>
+          <h2 id="en-10">10. Contact Us</h2>
+          <p>Email: xinzhao.uci@gmail.com</p>
+        </section>
 
-      <h2>1. 我们收集的信息</h2>
-      <p>我们可能收集以下类型的信息：</p>
+        <hr class="divider lang-en" />
+        <hr class="divider lang-zh" />
 
-      <h3>（1）本地内容与设置</h3>
-      <ul>
-        <li>你在应用内创建的提示词、分类、标签、设置等内容保存在你的设备本地。</li>
-        <li>我们不会主动上传或收集你存储的内容。</li>
-      </ul>
+        <!-- Chinese -->
+        <section class="lang-zh">
+          <h1>PromptBox 隐私政策</h1>
+          <p class="meta">
+            生效日期：2026/2/8<br />
+            运营主体：golden bear studio<br />
+            联系邮箱：xinzhao.uci@gmail.com
+          </p>
 
-      <h3>（2）剪贴板信息</h3>
-      <ul>
-        <li>当你打开“添加/捕捉”功能时，应用会读取剪贴板文本用于预览和保存。</li>
-        <li>剪贴板内容仅在本地处理，除非你选择保存、导出或分享。</li>
-      </ul>
+          <h2 id="zh-1">1. 我们收集的信息</h2>
+          <p>我们可能收集以下类型的信息：</p>
 
-      <h3>（3）使用统计与设备/应用信息（可关闭）</h3>
-      <ul>
-        <li>若开启“设置 → 隐私与数据 → 数据统计”，我们会使用 Firebase Analytics 收集匿名使用统计（如使用次数、功能使用频率）以及必要的设备/应用信息（如设备型号、系统版本、应用版本）。</li>
-        <li>该统计用于改进产品体验，你可以随时关闭。</li>
-      </ul>
+          <h3>（1）本地内容与设置</h3>
+          <ul>
+            <li>你在应用内创建的提示词、分类、标签、设置等内容保存在你的设备本地。</li>
+            <li>我们不会主动上传或收集你存储的内容。</li>
+          </ul>
 
-      <h3>（4）网络请求日志</h3>
-      <ul>
-        <li>当你使用“探索”功能加载推荐提示词时，我们的服务器/内容分发服务可能接收标准请求信息（如 IP 地址、浏览器/设备信息、请求时间）。</li>
-      </ul>
+          <h3>（2）剪贴板信息</h3>
+          <ul>
+            <li>当你打开“添加/捕捉”功能时，应用会读取剪贴板文本用于预览和保存。</li>
+            <li>剪贴板内容仅在本地处理，除非你选择保存、导出或分享。</li>
+          </ul>
 
-      <h3>（5）分享/反馈</h3>
-      <ul>
-        <li>当你导出、分享或发送邮件反馈时，相关数据将由你选择的应用或服务处理（例如邮件客户端、分享目标应用）。</li>
-      </ul>
+          <h3>（3）使用统计与设备/应用信息（可关闭）</h3>
+          <ul>
+            <li>若开启“设置 → 隐私与数据 → 数据统计”，我们会使用 Firebase Analytics 收集匿名使用统计（如使用次数、功能使用频率）以及必要的设备/应用信息（如设备型号、系统版本、应用版本）。</li>
+            <li>该统计用于改进产品体验，你可以随时关闭。</li>
+          </ul>
 
-      <h2>2. 我们如何使用信息</h2>
-      <ul>
-        <li>提供与改进核心功能（如内容管理、探索推荐）</li>
-        <li>了解功能使用情况并优化体验（仅在你开启统计时）</li>
-        <li>处理用户反馈与问题</li>
-      </ul>
+          <h3>（4）网络请求日志</h3>
+          <ul>
+            <li>当你使用“探索”功能加载推荐提示词时，我们的服务器/内容分发服务可能接收标准请求信息（如 IP 地址、浏览器/设备信息、请求时间）。</li>
+          </ul>
 
-      <h2>3. 信息共享与第三方服务</h2>
-      <p>我们不会出售你的个人信息。</p>
-      <p>我们可能会使用以下第三方服务来提供功能或统计：</p>
-      <ul>
-        <li><strong>Firebase Analytics（Google）</strong>：用于匿名使用统计（可关闭）</li>
-        <li><strong>内容托管/分发服务</strong>：用于提供探索推荐内容</li>
-      </ul>
-      <p>这些服务的处理遵循各自的隐私政策。</p>
+          <h3>（5）分享/反馈</h3>
+          <ul>
+            <li>当你导出、分享或发送邮件反馈时，相关数据将由你选择的应用或服务处理（例如邮件客户端、分享目标应用）。</li>
+          </ul>
 
-      <h2>4. 数据存储与保留</h2>
-      <ul>
-        <li>本地内容存储在你的设备上；你可以删除内容或卸载应用以移除本地数据。</li>
-        <li>使用统计数据由第三方服务处理，其保留期限以服务商默认设置为准。</li>
-        <li>服务器请求日志可能为安全与性能保留。</li>
-      </ul>
+          <h2 id="zh-2">2. 我们如何使用信息</h2>
+          <ul>
+            <li>提供与改进核心功能（如内容管理、探索推荐）</li>
+            <li>了解功能使用情况并优化体验（仅在你开启统计时）</li>
+            <li>处理用户反馈与问题</li>
+          </ul>
 
-      <h2>5. 数据安全</h2>
-      <p>我们会采取合理的技术与组织措施保护你的信息安全。数据在传输过程中使用安全连接。你在设备上的本地数据由系统机制保护。</p>
+          <h2 id="zh-3">3. 信息共享与第三方服务</h2>
+          <p>我们不会出售你的个人信息。</p>
+          <p>我们可能会使用以下第三方服务来提供功能或统计：</p>
+          <ul>
+            <li><strong>Firebase Analytics（Google）</strong>：用于匿名使用统计（可关闭）</li>
+            <li><strong>内容托管/分发服务</strong>：用于提供探索推荐内容</li>
+          </ul>
+          <p>这些服务的处理遵循各自的隐私政策。</p>
 
-      <h2>6. 你的选择</h2>
-      <ul>
-        <li>在“设置 → 隐私与数据”中关闭“数据统计”</li>
-        <li>删除你在应用内创建的内容</li>
-        <li>卸载应用以清除本地数据</li>
-      </ul>
+          <h2 id="zh-4">4. 数据存储与保留</h2>
+          <ul>
+            <li>本地内容存储在你的设备上；你可以删除内容或卸载应用以移除本地数据。</li>
+            <li>使用统计数据由第三方服务处理，其保留期限以服务商默认设置为准。</li>
+            <li>服务器请求日志可能为安全与性能保留。</li>
+          </ul>
 
-      <h2>7. 跨境处理</h2>
-      <p>由于我们使用的服务可能位于不同国家或地区，你的信息（如匿名统计或请求日志）可能在其他国家/地区处理。</p>
+          <h2 id="zh-5">5. 数据安全</h2>
+          <p>我们会采取合理的技术与组织措施保护你的信息安全。数据在传输过程中使用安全连接。你在设备上的本地数据由系统机制保护。</p>
 
-      <h2>8. 儿童隐私</h2>
-      <p>本应用不面向 13 岁以下儿童。若你认为我们可能收集了儿童的信息，请联系我们删除。</p>
+          <h2 id="zh-6">6. 你的选择</h2>
+          <ul>
+            <li>在“设置 → 隐私与数据”中关闭“数据统计”</li>
+            <li>删除你在应用内创建的内容</li>
+            <li>卸载应用以清除本地数据</li>
+          </ul>
 
-      <h2>9. 政策更新</h2>
-      <p>我们可能不时更新本隐私政策。更新后会在本页面发布并更新“生效日期”。</p>
+          <h2 id="zh-7">7. 跨境处理</h2>
+          <p>由于我们使用的服务可能位于不同国家或地区，你的信息（如匿名统计或请求日志）可能在其他国家/地区处理。</p>
 
-      <h2>10. 联系我们</h2>
-      <p>邮箱：xinzhao.uci@gmail.com</p>
+          <h2 id="zh-8">8. 儿童隐私</h2>
+          <p>本应用不面向 13 岁以下儿童。若你认为我们可能收集了儿童的信息，请联系我们删除。</p>
+
+          <h2 id="zh-9">9. 政策更新</h2>
+          <p>我们可能不时更新本隐私政策。更新后会在本页面发布并更新“生效日期”。</p>
+
+          <h2 id="zh-10">10. 联系我们</h2>
+          <p>邮箱：xinzhao.uci@gmail.com</p>
+        </section>
+      </div>
     </main>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var btnEn = document.getElementById("btn-en");
+        var btnZh = document.getElementById("btn-zh");
+
+        function setLang(lang) {
+          root.setAttribute("data-lang", lang);
+          btnEn.classList.toggle("active", lang === "en");
+          btnZh.classList.toggle("active", lang === "zh");
+          localStorage.setItem("pb_lang", lang);
+        }
+
+        var saved = localStorage.getItem("pb_lang");
+        if (saved === "zh" || saved === "en") setLang(saved);
+
+        btnEn.addEventListener("click", function () { setLang("en"); });
+        btnZh.addEventListener("click", function () { setLang("zh"); });
+      })();
+    </script>
   </body>
 </html>
